@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Sarı Site Yorumları",
+  "description": "Bu uygulamanın hiçbir kurum ve kuruluş ile ilgisi yoktur. Hobi amaçlı geliştirilmiştir.",
+  "version": "0.1",
+  "icons": {
+    "16": "sarisite_logo.png",
+    "48": "sarisite_logo.png",
+    "128": "sarisite_logo.png"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": "sarisite_logo.png"
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}

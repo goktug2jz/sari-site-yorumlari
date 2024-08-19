@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-1.11.1.min.js"></script>
+    <script src="popup.js"></script>
+    <script src="background.js"></script>
+    <script src="script.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff; /* Beyaz arka plan */
+            padding: 10px;
+            margin: 0;
+            width: 320px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #ffe800; /* Başlık arka planı */
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 16px;
+            margin: 0;
+            color: #000;
+        }
+
+        .profile-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #f57f17; /* Profil ikonunun arka plan rengi */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            background-color: #fff;
+            border: 1px solid #ffe800;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown button {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            border: none;
+            background-color: #ffe800;
+            color: #fff;
+            text-align: left;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .dropdown button:hover {
+            background-color: #fdd835;
+        }
+
+        .comment-section {
+            margin-top: 20px;
+        }
+
+        .comment-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .comment-input input {
+            flex: 1;
+            padding: 8px;
+            border: 2px solid #ffe800; /* Canlı sarı tonlarında border */
+            border-radius: 4px 0 0 4px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .comment-input button {
+            padding: 8px 12px;
+            border: none;
+            background-color: #ffe800; /* Canlı sarı tonlarında buton */
+            color: #fff;
+            font-size: 14px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .comment-input button:hover {
+            background-color: #fdd835; /* Biraz daha koyu sarı tonları */
+        }
+
+        .comments {
+            background-color: #fff9c4; /* Çok açık sarı tonlarında arka plan */
+            padding: 10px;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ffe800; /* Canlı sarı tonlarında border */
+        }
+
+        .comment {
+            padding: 5px 0;
+            border-bottom: 1px solid #ffeb3b; /* Yorumlar arasında sarı ayrım */
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment strong {
+            color: #f57f17; /* Koyu sarı-turuncu tonlarında kullanıcı adı */
+        }
+
+        .comment .date {
+            display: block;
+            font-size: 12px;
+            color: #9e9e9e; /* Gri renkli tarih */
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><div id="content">İçerik yükleniyor...</div></h1>
+        <div class="profile-icon" onclick="toggleDropdown()">P</div>
+        <div class="dropdown" id="dropdownMenu">
+            <button onclick="logout()">Çıkış Yap</button>
+        </div>
+    </div>
+
+    
+
+    <div class="comment-section">
+        <div class="comment-input">
+            <input type="text" placeholder="Yorum yaz...">
+            <button>Gönder</button>
+        </div>
+        <div class="username">
+            username
+        </div>
+        <div class="comments">
+            <!-- Yorumlar burada gösterilecek -->
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById('dropdownMenu');
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                dropdown.style.display = 'block';
+            }
+        }
+
+        function logout() {
+            alert('Çıkış Yapıldı'); // Çıkış işlemi ile ilgili kod burada olacak
+        }
+
+        // Belgeyi tıklamada dropdown menüyü kapat
+        document.addEventListener('click', function(event) {
+            var dropdown = document.getElementById('dropdownMenu');
+            if (!event.target.closest('.profile-icon') && !event.target.closest('.dropdown')) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
