@@ -13,12 +13,13 @@ $(document).ready(function() {
             if (chrome.runtime.lastError) {
                 document.getElementById('content').textContent = 'Bir hata oluştu: ' + chrome.runtime.lastError.message;
             } else {
-                document.getElementById('content').textContent = "İlan Numarası: "+results[0];
+                //document.getElementById('content').textContent = "İlan Numarası: "+results[0];
                 classifiedId = results[0];
             }
         });
-        if (classifiedId === null || classifiedId.trim() === '') {
+        if (classifiedId === null || classifiedId.trim() === '' || classifiedId.trim() === "Bulamadım") {
             $(".comments").html("ilan no tespit edilemedi");
+            document.getElementById('content').textContent = "İlan Numarası: "+results[0];
         }else{
             // FastAPI servisine GET isteği atın
             $.get(`http://127.0.0.1:8000/comments/${classifiedId}`, function(data) {

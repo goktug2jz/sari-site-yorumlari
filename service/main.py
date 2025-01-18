@@ -41,7 +41,7 @@ async def read_comments(classified_id: str, db: Session = Depends(get_db)):
     results = [
         {
             "ip": comment.ip,
-            "id": comment.id,
+            "id": comment.id,   
             "comment": comment.comment,
             "classifiedId": comment.classifiedId,
             "username": username,  # Kullanıcı adı burada
